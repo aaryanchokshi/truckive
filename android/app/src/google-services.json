@@ -1,0 +1,104 @@
+{
+  "project_info": {
+    "project_number": "39402500214",
+    "project_id": "truckive",
+    "storage_bucket": "truckive.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39402500214:android:07767e352649a3b55a2f57",
+        "android_client_info": {
+          "package_name": "com.example.truckive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "39402500214-vic4amig5bu4j8gdfhbei2rp2a47olv5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.truckive",
+            "certificate_hash": "60fbe65e7bb1f3e0788bd4ada8eb7ca36522aa8e"
+          }
+        },
+        {
+          "client_id": "39402500214-ron4v6608tpmkp4a037ftk2dk8mmnon1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUhap-SfZd4tFkCuixBn3bQ7-jYB-x8Sk"
+        },
+        {
+          "current_key": "AIzaSyBkWa_CuwOGblcnEhiOTt0n6_zoOSAS08M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "39402500214-ron4v6608tpmkp4a037ftk2dk8mmnon1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "39402500214-e065vbgpmq7f4mo74997sv5fgsm7qkkl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.snapsid.loginuicolors"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39402500214:android:1a8d3401c6564a985a2f57",
+        "android_client_info": {
+          "package_name": "com.snapsid.loginuicolors"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "39402500214-55gbv2g76df1bo7kp46mrfkl4l2le58o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.snapsid.loginuicolors",
+            "certificate_hash": "60fbe65e7bb1f3e0788bd4ada8eb7ca36522aa8e"
+          }
+        },
+        {
+          "client_id": "39402500214-ron4v6608tpmkp4a037ftk2dk8mmnon1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUhap-SfZd4tFkCuixBn3bQ7-jYB-x8Sk"
+        },
+        {
+          "current_key": "AIzaSyBkWa_CuwOGblcnEhiOTt0n6_zoOSAS08M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "39402500214-ron4v6608tpmkp4a037ftk2dk8mmnon1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "39402500214-e065vbgpmq7f4mo74997sv5fgsm7qkkl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.snapsid.loginuicolors"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
