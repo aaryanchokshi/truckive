@@ -1,4 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:truckive/firebase_options.dart';
 import 'login_page.dart'; // Make sure the file paths are correct
 import 'register_page.dart';
 import 'dashboard_page.dart';
@@ -6,7 +8,13 @@ import 'booking_screen.dart';
 //import 'profile_page.dart';
 //import 'settings_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions
+        .currentPlatform, // Replace with your Firebase options
+  );
+
   runApp(MyApp());
 }
 
@@ -44,7 +52,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => LoginScreen(),
+        '/': (context) => LoginPage(),
         '/registration': (context) => RegistrationScreen(),
         '/dashboard': (context) => DashboardScreen(),
         '/booking': (context) => BookingScreen(),

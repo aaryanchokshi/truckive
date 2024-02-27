@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "357398699579",
+    "project_id": "truckive-user",
+    "storage_bucket": "truckive-user.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:357398699579:android:d24350be737e1e109ec61e",
+        "android_client_info": {
+          "package_name": "com.example.truckive"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYN_tLba5OEBJhUGWX6t4TGtNLHCkBpA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

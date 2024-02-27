@@ -30,8 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_core: ^1.10.0
-  firebase_auth: ^3.3.5
+  # firebase_core: ^1.10.0
+  firebase_auth: ^4.17.4
   #google_maps_flutter: ^2.1.2
   flutter_dotenv: ^5.0.2 # If you plan to use environment variables for API keys, etc.
   flutter_staggered_grid_view: ^0.4.1
@@ -39,6 +39,7 @@ dependencies:
   flutter_map: ^6.1.0
   latlong2: ^0.9.0
   network_image: ^0.1.1
+  # firebase_options: any
 
 
 
