@@ -25,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -47,30 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBmy24djsF9ZmJOvTUVKw_Hz5nLrMJmo70',
-    appId: '1:39402500214:web:b4616cb4a6fbe9675a2f57',
-    messagingSenderId: '39402500214',
-    projectId: 'truckive',
-    authDomain: 'truckive.firebaseapp.com',
-    storageBucket: 'truckive.appspot.com',
+    apiKey: 'AIzaSyDSDFilcHvJPuVyuu7jgFC9lYvjBtHWeCI',
+    appId: '1:715569131917:web:70120fc96581a6b9f84dc4',
+    messagingSenderId: '715569131917',
+    projectId: 'truckiveuser',
+    authDomain: 'truckiveuser.firebaseapp.com',
+    storageBucket: 'truckiveuser.appspot.com',
+    measurementId: 'G-VMW82QMP8Z',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBkWa_CuwOGblcnEhiOTt0n6_zoOSAS08M',
-    appId: '1:39402500214:android:1a8d3401c6564a985a2f57',
-    messagingSenderId: '39402500214',
-    projectId: 'truckive',
-    storageBucket: 'truckive.appspot.com',
+    apiKey: 'AIzaSyAo3pBeL4YZHBphW5M6iLB9CgEO-xNhEAQ',
+    appId: '1:715569131917:android:a26a2ae5fe4da304f84dc4',
+    messagingSenderId: '715569131917',
+    projectId: 'truckiveuser',
+    storageBucket: 'truckiveuser.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBNAQmXsGpUTHOu4yrntqAVLecyDzZQ3As',
-    appId: '1:39402500214:ios:69bdf4bd3971cc765a2f57',
-    messagingSenderId: '39402500214',
-    projectId: 'truckive',
-    storageBucket: 'truckive.appspot.com',
-    iosClientId:
-        '39402500214-e065vbgpmq7f4mo74997sv5fgsm7qkkl.apps.googleusercontent.com',
-    iosBundleId: 'com.snapsid.loginuicolors',
+    apiKey: 'AIzaSyAY1Ewp8QBtli6VD6fQup3dy4PgDc5gbKE',
+    appId: '1:715569131917:ios:b4a22889f4706d50f84dc4',
+    messagingSenderId: '715569131917',
+    projectId: 'truckiveuser',
+    storageBucket: 'truckiveuser.appspot.com',
+    iosBundleId: 'com.example.truckive',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyAY1Ewp8QBtli6VD6fQup3dy4PgDc5gbKE',
+    appId: '1:715569131917:ios:14d918e4f752b360f84dc4',
+    messagingSenderId: '715569131917',
+    projectId: 'truckiveuser',
+    storageBucket: 'truckiveuser.appspot.com',
+    iosBundleId: 'com.example.truckive.RunnerTests',
   );
 }
