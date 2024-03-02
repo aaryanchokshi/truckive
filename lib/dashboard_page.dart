@@ -173,54 +173,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
     );
   }
-// bottomNavigationBar: BottomNavigationBar(
-//         type: BottomNavigationBarType.fixed,
-//         items: const [
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.home),
-//             label: 'Home',
-//           ),
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.assessment),
-//             label: 'Reports',
-//           ),
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.description),
-//             label: 'Details',
-//           ),
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.person),
-//             label: 'Profile',
-//           ),
-//         ],
-//         currentIndex: 0, // this will be set when a new tab is tapped
-//         onTap: (int index) {
-//           switch (index) {
-//             case 1: // Navigates to the Reports page
-//               Navigator.push(
-//                 context,
-//                 MaterialPageRoute(builder: (context) => TruckiveReportsPage()),
-//               );
-//               break;
-//             case 2: // Navigates to the Details page
-//               Navigator.push(
-//                 context,
-//                 MaterialPageRoute(builder: (context) => DriverDetailsPage()),
-//               );
-//               break;
-//             case 3: // Navigates to the Profile page
-//               Navigator.push(
-//                 context,
-//                 MaterialPageRoute(builder: (context) => ProfilePage()),
-//               );
-//               break;
-//             // Implement navigation for the Home tab as needed
-//           }
-//         },
-//         backgroundColor: theme.colorScheme.background,
-//         selectedItemColor: theme.colorScheme.primary,
-//         unselectedItemColor: theme.colorScheme.onBackground,
-//       ),
 
   BottomNavigationBar _buildBottomNavigationBar() {
     return BottomNavigationBar(
