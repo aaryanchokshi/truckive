@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:truckive/register_page.dart';
 import 'dashboard_page.dart';
+import 'forget_password_page.dart';
 //import 'registration_.dart'; // Import the registration screen
 
 class LoginPage extends StatefulWidget {
@@ -183,6 +184,17 @@ class LoginScreen extends State<LoginPage> {
                     );
                   },
                   child: Text('Don’t have an account? Sign up',
+                      style: TextStyle(color: Colors.white)),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ForgotPasswordPage()),
+                    );
+                  },
+                  child: Text('Forgot Password?',
                       style: TextStyle(color: Colors.white)),
                 ),
               ],

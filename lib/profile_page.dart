@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:truckive/login_page.dart';
 import 'EditProfilePage.dart';
 //import 'edit_profile_page.dart';
 //import 'settings_page.dart';
@@ -51,8 +53,11 @@ class ProfilePage extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => HelpSupportPage()));
                 }),
-                _buildProfileOption(context, 'Log Out', Icons.exit_to_app, () {
-                  // Handle log out
+                _buildProfileOption(context, 'Log Out', Icons.exit_to_app,
+                    () async {
+                  await FirebaseAuth.instance.signOut();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginPage()));
                 }),
               ],
             ),
