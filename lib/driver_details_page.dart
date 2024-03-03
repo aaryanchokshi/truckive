@@ -30,8 +30,8 @@ class DriverDetailsPage extends StatelessWidget {
               children: <Widget>[
                 CircleAvatar(
                   radius: 50,
-                  backgroundImage: NetworkImage(
-                      'https://via.placeholder.com/150'), // Example placeholder image
+                  backgroundImage: AssetImage(
+                      'assets/driverimage.webp'), // Example placeholder image
                 ),
                 Divider(
                     height: 20,
@@ -39,7 +39,7 @@ class DriverDetailsPage extends StatelessWidget {
                         .colorScheme
                         .onSurface
                         .withOpacity(0.3)),
-                Text('John Doe',
+                Text('Satpal Singh',
                     style: GoogleFonts.lato(
                         fontSize: 24, fontWeight: FontWeight.bold)),
                 SizedBox(height: 10),
@@ -53,13 +53,13 @@ class DriverDetailsPage extends StatelessWidget {
                     style: GoogleFonts.lato(
                         fontSize: 18, color: Colors.redAccent)),
                 SizedBox(height: 10),
-                Text('Mobile: +1-202-555-0178',
+                Text('Mobile: +91-6169670477',
                     style: GoogleFonts.lato(fontSize: 18)),
                 SizedBox(height: 5),
-                Text('Truck Model: Freightliner Cascadia',
+                Text('Truck Model: Tata Old',
                     style: GoogleFonts.lato(fontSize: 18)),
                 SizedBox(height: 5),
-                Text('Plate No: 7BHV355',
+                Text('Plate No: GJ-01-AB-2024',
                     style: GoogleFonts.lato(fontSize: 18)),
               ],
             ),

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,6 +22,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
   final MapController _mapController = MapController();
   List<LatLng> _routePoints = [];
   int _currentIndex = 0;
+  List<String> _suggestions = [];
+  List<String> _suggestions1 = [];
 
   Future<LatLng?> _getCoordinates(String address) async {
     final url = Uri.parse(
@@ -71,6 +75,86 @@ class _DashboardScreenState extends State<DashboardScreen> {
     }
   }
 
+  Future<List> fetchAutoCompleteSuggestions(String query) async {
+    final url = Uri.parse(
+        'https://nominatim.openstreetmap.org/search?format=json&q=$query');
+
+    try {
+      final response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        final List<dynamic> data = json.decode(response.body);
+        List suggestions =
+            data.map((result) => result['display_name']).toList();
+        return suggestions.take(1).toList();
+      } else {
+        print(
+            'Failed to fetch autocomplete suggestions: ${response.statusCode}');
+        return [];
+      }
+    } catch (e) {
+      print('Error fetching autocomplete suggestions: $e');
+      return [];
+    }
+  }
+
+  Future<void> _suggestLocations(
+      String input, TextEditingController controller) async {
+    if (input.isEmpty) {
+      return;
+    }
+
+    try {
+      List<String> suggestions =
+          (await fetchAutoCompleteSuggestions(input)).cast<String>();
+      setState(() {
+        _suggestions = suggestions;
+      });
+    } catch (e) {
+      print('Error suggesting locations: $e');
+    }
+  }
+
+  Future<List> fetchAutoCompleteSuggestions1(String query) async {
+    final url = Uri.parse(
+        'https://nominatim.openstreetmap.org/search?format=json&q=$query');
+
+    try {
+      final response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        final List<dynamic> data = json.decode(response.body);
+        List suggestions1 =
+            data.map((result) => result['display_name']).toList();
+        return suggestions1.take(1).toList();
+      } else {
+        print(
+            'Failed to fetch autocomplete suggestions: ${response.statusCode}');
+        return [];
+      }
+    } catch (e) {
+      print('Error fetching autocomplete suggestions: $e');
+      return [];
+    }
+  }
+
+  Future<void> _suggestLocations1(
+      String input, TextEditingController controller) async {
+    if (input.isEmpty) {
+      return;
+    }
+
+    try {
+      List<String> suggestions1 =
+          (await fetchAutoCompleteSuggestions1(input)).cast<String>();
+      setState(() {
+        _suggestions1 = suggestions1;
+      });
+    } catch (e) {
+      print('Error suggesting locations: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     //theme = Theme.of(context);
@@ -83,7 +167,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             _buildSearchBar(
                 'Pick Up Location', Icons.location_pin, _pickupController),
             SizedBox(height: 10),
-            _buildSearchBar('Drop Location', Icons.flag, _dropController),
+            _buildSearchBar1('Drop Location', Icons.flag, _dropController),
             ElevatedButton(
                 onPressed: _onFindRoutePressed, child: Text('Get Route')),
             SizedBox(height: 10),
@@ -124,29 +208,172 @@ class _DashboardScreenState extends State<DashboardScreen> {
       String placeholder, IconData icon, TextEditingController controller) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.0),
-      child: TextField(
-        controller: controller,
-        style: TextStyle(color: Colors.black),
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.white,
-          hintText: placeholder,
-          prefixIcon: Icon(icon, color: Colors.black),
-          border: OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextField(
+            controller: controller,
+            style: TextStyle(color: Colors.black),
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.white,
+              hintText: placeholder,
+              prefixIcon: Icon(icon, color: Colors.black),
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              suffixIcon: IconButton(
+                icon: Icon(Icons.clear),
+                onPressed: () {
+                  controller.clear();
+                  setState(() {
+                    _suggestions = [];
+                  });
+                },
+              ),
+            ),
+            onChanged: (input) {
+              _suggestLocations(input, controller);
+            },
           ),
-        ),
-        onSubmitted: (_) async {
-          final start = await _getCoordinates(_pickupController.text);
-          final end = await _getCoordinates(_dropController.text);
-          if (start != null && end != null) {
-            await _fetchRoute(start, end);
-          }
-        },
+          SizedBox(height: 10),
+          if (_suggestions.isNotEmpty) ...[
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 3,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+              width: double.infinity,
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: _suggestions.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(_suggestions[index]),
+                    onTap: () {
+                      // Handle selection of suggestion
+                      controller.text = _suggestions[index];
+                      setState(() {
+                        _suggestions = [];
+                      });
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
+        ],
       ),
     );
   }
+
+  Widget _buildSearchBar1(
+      String placeholder, IconData icon, TextEditingController controller) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextField(
+            controller: controller,
+            style: TextStyle(color: Colors.black),
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.white,
+              hintText: placeholder,
+              prefixIcon: Icon(icon, color: Colors.black),
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              suffixIcon: IconButton(
+                icon: Icon(Icons.clear),
+                onPressed: () {
+                  controller.clear();
+                  setState(() {
+                    _suggestions = [];
+                  });
+                },
+              ),
+            ),
+            onChanged: (input) {
+              _suggestLocations1(input, controller);
+            },
+          ),
+          SizedBox(height: 10),
+          if (_suggestions1.isNotEmpty) ...[
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 3,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: _suggestions1.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(_suggestions1[index]),
+                    onTap: () {
+                      // Handle selection of suggestion
+                      controller.text = _suggestions1[index];
+                      setState(() {
+                        _suggestions1 = [];
+                      });
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
+  // Widget _buildSearchBar(
+  //     String placeholder, IconData icon, TextEditingController controller) {
+  //   return Padding(
+  //     padding: EdgeInsets.symmetric(horizontal: 10.0),
+  //     child: TextField(
+  //       controller: controller,
+  //       style: TextStyle(color: Colors.black),
+  //       decoration: InputDecoration(
+  //         filled: true,
+  //         fillColor: Colors.white,
+  //         hintText: placeholder,
+  //         prefixIcon: Icon(icon, color: Colors.black),
+  //         border: OutlineInputBorder(
+  //           borderSide: BorderSide.none,
+  //           borderRadius: BorderRadius.circular(30),
+  //         ),
+  //       ),
+  //       onSubmitted: (_) async {
+  //         final start = await _getCoordinates(_pickupController.text);
+  //         final end = await _getCoordinates(_dropController.text);
+  //         if (start != null && end != null) {
+  //           await _fetchRoute(start, end);
+  //         }
+  //       },
+  //     ),
+  //   );
+  // }
 
   Expanded _buildMap() {
     return Expanded(
@@ -166,7 +393,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
               Polyline(
                 points: _routePoints,
                 strokeWidth: 4.0,
-                color: Color.fromARGB(255, 17, 122, 101),
+                color: Color.fromARGB(255, 70, 62, 62),
+              ),
+            ],
+          ),
+          MarkerLayer(
+            markers: [
+              Marker(
+                point:
+                    _routePoints.isNotEmpty ? _routePoints.first : LatLng(0, 0),
+                width: 80,
+                height: 80,
+                child: Icon(Icons.location_pin,
+                    color: const Color.fromARGB(255, 34, 105, 36)),
+              ),
+              Marker(
+                point:
+                    _routePoints.isNotEmpty ? _routePoints.last : LatLng(0, 0),
+                width: 80,
+                height: 80,
+                child: Icon(Icons.location_pin, color: Colors.red),
               ),
             ],
           ),

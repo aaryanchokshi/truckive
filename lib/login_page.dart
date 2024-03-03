@@ -119,10 +119,11 @@ class LoginScreen extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                FlutterLogo(size: 100),
+                Image.asset('assets/ic_launcher.jpg', width: 100, height: 100),
                 SizedBox(height: 50),
                 TextField(
                   controller: emailController,
+                  style: TextStyle(color: Colors.black),
                   decoration: InputDecoration(
                     hintText: 'Email',
                     fillColor: Colors.white,
@@ -131,12 +132,16 @@ class LoginScreen extends State<LoginPage> {
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(),
                     ),
-                    prefixIcon: Icon(Icons.email),
+                    prefixIcon: Icon(
+                      Icons.email,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
                 SizedBox(height: 20),
                 TextField(
                   controller: passwordController,
+                  style: TextStyle(color: Colors.black),
                   obscureText: true,
                   decoration: InputDecoration(
                     hintText: 'Password',
@@ -147,7 +152,10 @@ class LoginScreen extends State<LoginPage> {
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(),
                     ),
-                    prefixIcon: Icon(Icons.lock),
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
                 SizedBox(height: 30),
