@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:truckive/account_setup.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'getting_sarted.dart';
+import 'guide.dart';
+import 'safety.dart';
 
 class HelpSupportPage extends StatelessWidget {
   void _launchURL(String url) async {
@@ -45,26 +50,38 @@ class HelpSupportPage extends StatelessWidget {
           ListTile(
             title: Text('Getting Started', style: GoogleFonts.lato()),
             onTap: () {
-              // Navigate to getting started help articles
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => GettingStartedPage()),
+              );
             },
           ),
           ListTile(
             title:
                 Text('Account and Payment Options', style: GoogleFonts.lato()),
             onTap: () {
-              // Navigate to account/payment help articles
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AccountSetupPage()),
+              );
             },
           ),
           ListTile(
             title: Text('Guide to Truckive', style: GoogleFonts.lato()),
             onTap: () {
-              // Navigate to Truckive guide articles
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => GuidePage()),
+              );
             },
           ),
           ListTile(
             title: Text('Safety Tips', style: GoogleFonts.lato()),
             onTap: () {
-              // Navigate to safety tips articles
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SafetyTipsPage()),
+              );
             },
           ),
         ],

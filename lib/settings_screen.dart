@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'privacy.dart';
+import 'ride_history_page.dart';
+
 class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,10 @@ class SettingsPage extends StatelessWidget {
             leading: Icon(Icons.history,
                 color: Theme.of(context).colorScheme.primary),
             onTap: () {
-              // Navigate to ride history
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => RideHistoryPage()),
+              );
             },
           ),
           ListTile(
@@ -41,7 +47,10 @@ class SettingsPage extends StatelessWidget {
             leading: Icon(Icons.lock_outline,
                 color: Theme.of(context).colorScheme.primary),
             onTap: () {
-              // Navigate to privacy settings
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PrivacySettingsPage()),
+              );
             },
           ),
         ],
