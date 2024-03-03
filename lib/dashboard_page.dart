@@ -5,6 +5,10 @@ import 'package:latlong2/latlong.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'driver_details_page.dart';
+import 'profile_page.dart';
+import 'reports_page.dart';
+
 class DashboardScreen extends StatefulWidget {
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
@@ -81,7 +85,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             SizedBox(height: 10),
             _buildSearchBar('Drop Location', Icons.flag, _dropController),
             ElevatedButton(
-                onPressed: _onFindRoutePressed, child: Text('Find Route')),
+                onPressed: _onFindRoutePressed, child: Text('Get Route')),
             SizedBox(height: 10),
             _buildMap(),
           ],
@@ -122,11 +126,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
       padding: EdgeInsets.symmetric(horizontal: 10.0),
       child: TextField(
         controller: controller,
+        style: TextStyle(color: Colors.black),
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,
           hintText: placeholder,
-          prefixIcon: Icon(icon),
+          prefixIcon: Icon(icon, color: Colors.black),
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(30),
@@ -172,28 +177,45 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   BottomNavigationBar _buildBottomNavigationBar() {
     return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.assessment), label: 'Reports'),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.description), label: 'Details'),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-      ],
-      currentIndex: _currentIndex,
-      onTap: (index) {
-        setState(() {
-          _currentIndex = index;
-          // Add navigation logic here
-        });
-      },
-      // backgroundColor: theme.colorScheme.background,
-      // selectedItemColor: theme.colorScheme.primary,
-      // unselectedItemColor: theme.colorScheme.onBackground,
-    );
+        type: BottomNavigationBarType.fixed,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.assessment), label: 'Reports'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.description), label: 'Details'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ],
+        currentIndex: 0, // this will be set when a new tab is tapped
+        onTap: (int index) {
+          switch (index) {
+            case 1: // Navigates to the Reports page
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TruckiveReportsPage()),
+              );
+              break;
+            case 2: // Navigates to the Details page
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DriverDetailsPage()),
+              );
+              break;
+            case 3: // Navigates to the Profile page
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfilePage()),
+              );
+              break;
+            // Implement navigation for the Home tab as needed
+          }
+        }
+        // backgroundColor: theme.colorScheme.background,
+        // selectedItemColor: theme.colorScheme.primary,
+        // unselectedItemColor: theme.colorScheme.onBackground,
+        );
   }
 }
-
 
 
 
