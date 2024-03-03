@@ -117,6 +117,8 @@
 
 // // ignore_for_file: prefer_const_constructors
 
+// ignore_for_file: prefer_const_constructors, deprecated_member_use
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -574,25 +576,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
             ],
           ),
-          MarkerLayer(
-            markers: [
-              Marker(
-                point:
-                    _routePoints.isNotEmpty ? _routePoints.first : LatLng(0, 0),
-                width: 80,
-                height: 80,
-                child: Icon(Icons.location_pin,
-                    color: const Color.fromARGB(255, 34, 105, 36)),
-              ),
-              Marker(
-                point:
-                    _routePoints.isNotEmpty ? _routePoints.last : LatLng(0, 0),
-                width: 80,
-                height: 80,
-                child: Icon(Icons.location_pin, color: Colors.red),
-              ),
-            ],
-          ),
+          MarkerLayer(markers: _markers),
+
+          //   markers: [
+          //     Marker(
+          //       point:
+          //           _routePoints.isNotEmpty ? _routePoints.first : LatLng(0, 0),
+          //       width: 80,
+          //       height: 80,
+          //       child: Icon(Icons.location_pin,
+          //           color: const Color.fromARGB(255, 34, 105, 36)),
+          //     ),
+          //     Marker(
+          //       point:
+          //           _routePoints.isNotEmpty ? _routePoints.last : LatLng(0, 0),
+          //       width: 80,
+          //       height: 80,
+          //       child: Icon(Icons.location_pin, color: Colors.red),
+          //     ),
+          //   ],
+          // ),
         ],
       ),
     );
