@@ -126,6 +126,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:http/http.dart' as http;
+import 'package:truckive/notification_page.dart';
 import 'dart:convert';
 
 import 'driver_details_page.dart';
@@ -331,6 +332,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
           child: Icon(Icons.local_shipping, color: Colors.blue, size: 40),
         ),
       ];
+      // Move the map center to the new driver location.
+      _mapController.move(location, _mapController.zoom);
     });
   }
 
@@ -372,12 +375,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          //IconButton(
-          // icon: Icon(Icons.notifications, color: theme.colorScheme.onSurface),
-          //onPressed: () {
-          // Notification onPressed logic here
-          // },
-          //),
+          IconButton(
+            icon: Icon(Icons.notifications, color: Colors.black),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => NotificationsPage()),
+            ),
+          ),
         ],
       ),
     );
@@ -576,7 +580,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
             ],
           ),
-          MarkerLayer(markers: _markers),
+          MarkerLayer(
+            markers: _markers,
+          ),
+          MarkerLayer(
+            markers: [
+              Marker(
+                point:
+                    _routePoints.isNotEmpty ? _routePoints.first : LatLng(0, 0),
+                width: 80,
+                height: 80,
+                child: Icon(Icons.location_pin,
+                    color: const Color.fromARGB(255, 34, 105, 36)),
+              ),
+              Marker(
+                point:
+                    _routePoints.isNotEmpty ? _routePoints.last : LatLng(0, 0),
+                width: 80,
+                height: 80,
+                child: Icon(Icons.location_pin, color: Colors.red),
+              ),
+            ],
+          )
 
           //   markers: [
           //     Marker(
