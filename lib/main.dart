@@ -32,9 +32,12 @@ class MyApp extends StatelessWidget {
       seedColor: Colors.blue, // Use your brand color here
       brightness: Brightness.dark,
     );
+    final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
     return MaterialApp(
       title: 'Truckive',
+
+      navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false, // This line removes the debug banner
       theme: ThemeData(
         useMaterial3: true, // Enable Material 3
@@ -54,7 +57,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => LoginPage(),
         '/registration': (context) => RegistrationScreen(),
-        '/dashboard': (context) => DashboardScreen(),
+        //'/dashboard': (context) => DashboardScreen(),
         '/booking': (context) => BookingScreen(),
         //'/profile': (context) => ProfileScreen(),
         //'/settings': (context) => SettingsScreen(),

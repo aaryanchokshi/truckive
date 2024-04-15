@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:truckive/register_page.dart';
 import 'dashboard_page.dart';
 import 'forget_password_page.dart';
+import 'order_page.dart';
 //import 'registration_.dart'; // Import the registration screen
 
 class LoginPage extends StatefulWidget {
@@ -95,8 +96,8 @@ class LoginScreen extends State<LoginPage> {
       final userCreated = await getUser(email, password);
       if (userCreated) {
         await _showSuccessDialog();
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => DashboardScreen()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => OrderPage()));
       } else {
         print('Error');
         _showErrorDialog("error");
